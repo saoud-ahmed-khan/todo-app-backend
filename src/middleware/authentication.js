@@ -8,7 +8,7 @@ module.exports = async (req, res, next) => {
     return res.send({ success: false, message: "token is missing" });
   }
   try {
-    const decode = await jwt.verify(token,"saoud")
+ const decode = await jwt.verify(token,process.env.JWT_SECRET)
     const user = await userModel.findById({ _id: decode.id });
     if (!user) {
       return res

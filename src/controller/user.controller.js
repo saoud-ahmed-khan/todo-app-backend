@@ -133,7 +133,7 @@ exports.login = async (req, res) => {
       username: user.username,
       id: user._id,
     };
-   const token= await jwt.sign(payload, config.JWT_SECRET)
+   const token= await jwt.sign(payload,process.env.JWT_SECRET)
 
     return res.json({ success: true, message:"success",   user ,token});
   } catch (error) {
