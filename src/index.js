@@ -1,6 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
-const { dbConnect } = require("./src/database/index");
+const { dbConnect } = require("./database/index");
 const path = require("path");
 const app = express();
 
@@ -17,7 +17,7 @@ app.use(morgan("dev"));
 app.get("/", (req, res) => {
   res.status(200).send({ success: true, message: "you are in root directory" });
 });
-app.use("/api/v1", require("./src/routes/index"));
+app.use("/api/v1", require("./routes/index"));
 const PORT = 5000 || process.env.PORT;
 
 dbConnect();
