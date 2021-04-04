@@ -5,12 +5,7 @@ const path = require("path");
 const app = express();
 
 
-require("dotenv").config({
-  path:
-    process.env.NODE_ENV === "development"
-      ? path.resolve(".env.development")
-      : path.resolve(".env"),
-});
+require("dotenv").config(); 
 
 app.use(express.json({ extended: false }));
 app.use(morgan("dev"));
@@ -19,7 +14,8 @@ app.get("/", (req, res) => {
 });
 app.use("/api/v1", require("./routes/index"));
 const PORT = 5000 || process.env.PORT;
-
+console.log(path.resolve(".env.development"));
+console.log(process.env.NODE_ENV)
 dbConnect();
 app.listen(PORT, () => {
   console.log(`your app is running on PORT ${PORT}`);
